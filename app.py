@@ -47,7 +47,7 @@ def index():
     ).sort_values(by='Jumlah', ascending=False).reset_index()
     # Dictionary stats digunakan untuk menyimpan beberapa data yang digunakan untuk menampilkan nilai di value box dan tabel
     stats = {
-        'most_categories' : top_category.nlargest(1, 'Jumlah')['Category'],
+        'most_categories' : top_category.loc[0, 'Category'],
         'total': top_category['Jumlah'].max(),
         'rev_table' : df2.groupby(['Category', 'App']).agg({'Reviews': 'sum',
                                                   'Rating': 'mean'}).sort_values(by='Reviews', ascending=False).head(10).reset_index().to_html(classes=['table thead-light table-striped table-bordered table-hover table-sm'])
